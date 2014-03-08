@@ -6,5 +6,5 @@ package ort.study.netty;
  * Date: 14-3-9
  * qunar.com
  */
-public class SimpleNettyServer {
+public class SimpleNettyExample {
 }
