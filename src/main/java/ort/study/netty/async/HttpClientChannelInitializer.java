@@ -15,9 +15,11 @@ public class HttpClientChannelInitializer extends ChannelInitializer<SocketChann
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-        pipeline.addLast("encoder", new HttpRequestEncoder());
+        //read fist decode response
         pipeline.addLast("decoder", new HttpResponseDecoder());
+        //async handler
         pipeline.addLast("handler", new AsyncHttpResponseHandler());
-
+        //write last encode request
+        pipeline.addLast("encoder", new HttpRequestEncoder());
     }
 }
