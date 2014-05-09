@@ -18,6 +18,7 @@ public class AsyncHttpResponseHandler extends SimpleChannelInboundHandler<HttpOb
         HttpObject response =  msg;
         ListenableFutureImpl attachment = ctx.attr(HttpClient.LISTENABLE_FUTURE).get();
         attachment.set(response);
+        System.out.println("Read"+System.currentTimeMillis()+response+"======================");
         attachment.done();
     }
 }

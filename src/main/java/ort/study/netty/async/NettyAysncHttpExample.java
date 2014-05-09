@@ -18,7 +18,7 @@ public class NettyAysncHttpExample {
             public void run() {
                 try {
                     System.out.println("baidu.com===================");
-                    System.out.println(objectListenableFuture.get());
+                    System.out.println("baidu"+objectListenableFuture.get());
                     System.out.println("baidu"+System.currentTimeMillis());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -27,13 +27,13 @@ public class NettyAysncHttpExample {
                 }
             }
         }, Executors.newSingleThreadExecutor());
-        ListenableFuture<Object> objectListenableFuture1 = hc.get("http://www.google.com");
+        ListenableFuture<Object> objectListenableFuture1 = hc.get("http://www.qunar.com");
         objectListenableFuture.addListener(new Runnable() {
             @Override
             public void run() {
                 try {
                     System.out.println("google.com===================");
-                    System.out.println(objectListenableFuture1.get());
+                    System.out.println("google"+objectListenableFuture1.get());
                     System.out.println("google"+System.currentTimeMillis());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
