@@ -1,8 +1,9 @@
 package ort.study.netty.async;
 
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.channel.*;
-import org.jboss.netty.handler.codec.http.HttpResponse;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.codec.http.HttpObject;
+import io.netty.util.AttributeKey;
 
 /**
  * .
@@ -10,21 +11,13 @@ import org.jboss.netty.handler.codec.http.HttpResponse;
  * Date: 14-5-9
  * qunar.com
  */
-public class AsyncHttpResponseHandler extends SimpleChannelUpstreamHandler {
-    ChannelBuffer content;
+public class AsyncHttpResponseHandler extends SimpleChannelInboundHandler<HttpObject> {
+
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) {
-        e.getCause().printStackTrace();
-        Channel ch = e.getChannel();
-        ch.close();
-    }
-    @Override
-    public void messageReceived(ChannelHandlerContext ctx, MessageEvent e){
-        HttpResponse response = (HttpResponse) e.getMessage();
-        ListenableFutureImpl attachment = (ListenableFutureImpl) ctx.getAttachment();
+    protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
+        HttpObject response =  msg;
+        ListenableFutureImpl attachment = ctx.attr(HttpClient.LISTENABLE_FUTURE).get();
         attachment.set(response);
         attachment.done();
-
     }
-
 }

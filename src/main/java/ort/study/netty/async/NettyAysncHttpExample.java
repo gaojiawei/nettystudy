@@ -1,7 +1,6 @@
 package ort.study.netty.async;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import org.jboss.netty.channel.ChannelPipeline;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -18,7 +17,9 @@ public class NettyAysncHttpExample {
             @Override
             public void run() {
                 try {
+                    System.out.println("baidu.com===================");
                     System.out.println(objectListenableFuture.get());
+                    System.out.println("baidu"+System.currentTimeMillis());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -31,7 +32,9 @@ public class NettyAysncHttpExample {
             @Override
             public void run() {
                 try {
-                    System.out.println(objectListenableFuture.get());
+                    System.out.println("google.com===================");
+                    System.out.println(objectListenableFuture1.get());
+                    System.out.println("google"+System.currentTimeMillis());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -39,6 +42,7 @@ public class NettyAysncHttpExample {
                 }
             }
         }, Executors.newSingleThreadExecutor());
+        System.out.println("Main"+System.currentTimeMillis());
     }
 
 }
