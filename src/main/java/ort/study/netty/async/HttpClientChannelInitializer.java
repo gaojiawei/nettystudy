@@ -3,7 +3,6 @@ package ort.study.netty.async;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpRequestEncoder;
 import io.netty.handler.codec.http.HttpResponseDecoder;
 
@@ -15,11 +14,12 @@ public class HttpClientChannelInitializer extends ChannelInitializer<SocketChann
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
+        System.out.println("init");
         //read fist decode response
         pipeline.addLast("decoder", new HttpResponseDecoder());
         //async handler
         pipeline.addLast("handler", new AsyncHttpResponseHandler());
-        //write last encode request
+        //write first encode request
         pipeline.addLast("encoder", new HttpRequestEncoder());
     }
 }
