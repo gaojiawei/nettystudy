@@ -3,7 +3,6 @@ package ort.study.netty.async;
 import com.google.common.util.concurrent.ListenableFuture;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
-import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.http.*;
@@ -12,7 +11,6 @@ import io.netty.util.AttributeKey;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.util.Map;
-import java.util.concurrent.*;
 
 /**
  * . User: jiawei.gao Date: 14-5-9 qunar.com
@@ -69,6 +67,7 @@ public class HttpClient {
         request.headers().add(HttpHeaders.Names.CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
         return retrieve(request);
     }
+
 
     public <T> ListenableFuture<T> retrieve(HttpRequest request) throws Exception {
         URI uri = new URI(request.getUri());
