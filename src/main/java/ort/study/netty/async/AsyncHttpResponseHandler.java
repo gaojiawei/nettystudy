@@ -29,13 +29,14 @@ public class AsyncHttpResponseHandler extends SimpleChannelInboundHandler<HttpOb
                 byte[] bytes = new byte[content.readableBytes()];
                 content.readBytes(bytes);
                 stringBuffer.append(new String(bytes, Charsets.UTF_8));
-//            }else{
-//                System.out.println("Read Header"+System.currentTimeMillis()+response+"======================");
+            }else{
+                System.out.println("Read Header"+System.currentTimeMillis()+response+"======================");
             }
 
         }else{
             //http 接受完后 通知
-            System.out.println("Thread"+Thread.currentThread().getName()+"HandlerInstance"+this.toString());
+//            System.out.println("Thread"+Thread.currentThread().getName()+"HandlerInstance"+this.toString());
+            System.out.println(stringBuffer.toString());
             attachment.set(stringBuffer.toString());
             attachment.done();
             stringBuffer = new StringBuilder();

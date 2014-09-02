@@ -2,6 +2,7 @@ package ort.study.netty.async;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 
 /**
@@ -11,18 +12,18 @@ public class NettyAysncHttpExample {
 
     public static void main(String[] args) throws Exception {
         HttpClient hc = new HttpClient();
-        ListenableFuture<String> objectListenableFuture = hc.get("http://www.baidu.com");
+        ListenableFuture<String> objectListenableFuture = hc.get("http://www.qunar.com");
         objectListenableFuture.addListener(() -> {
 //            System.out.println("baidu.com===================");
-//            try {
-//                System.out.println("baidu"+objectListenableFuture.get());
-//            } catch (InterruptedException | ExecutionException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                System.out.println("baidu"+objectListenableFuture.get());
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
 //            System.out.println("baidu"+System.currentTimeMillis());
         }, Executors.newSingleThreadExecutor());
-        ListenableFuture<String> objectListenableFuture1 = hc.get("http://www.qunar.com");
-        objectListenableFuture.addListener(() -> {
+//        ListenableFuture<String> objectListenableFuture1 = hc.get("http://www.qunar.com");
+//        objectListenableFuture.addListener(() -> {
 //            try {
 //                System.out.println("google.com===================");
 //                System.out.println("google"+objectListenableFuture1.get());
@@ -30,7 +31,7 @@ public class NettyAysncHttpExample {
 //            } catch (InterruptedException | ExecutionException e) {
 //                e.printStackTrace();
 //            }
-        }, Executors.newSingleThreadExecutor());
+//        }, Executors.newSingleThreadExecutor());
 //
 //        new Thread(()->{
 //            ListenableFuture<String> objectListenableFuture2 = null;
